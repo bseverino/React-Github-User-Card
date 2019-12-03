@@ -7,13 +7,15 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 const useStyles = makeStyles(theme => ({
     card: {
       maxWidth: 345,
-      minHeight: 600,
       display: 'flex',
       flexDirection: 'column',
       justifyContent: 'space-between'
     },
     avatar: {
         width: '100%'
+    },
+    username: {
+        marginLeft: 10
     },
     expand: {
       transform: 'rotate(0deg)',
@@ -39,22 +41,15 @@ function UserCard(props) {
         <Grid item xs={12} md={6} lg={4} xl={3}>
             <Card className={classes.card}>
                 <CardContent>
-                    <img className={classes.avatar} src={props.user.avatar_url} alt={`${props.user.login}'s avatar`} />
-                    <Typography variant='h5' component='h2'>
-                        {props.user.name}
-                    </Typography>
-                    <Typography variant='h6' component='h3'>
-                        <a href={props.user.html_url}>{props.user.login}</a>
-                    </Typography>
-                    <Typography paragraph>
-                        {props.user.bio}
-                    </Typography>
+                    <a href={props.user.html_url}>
+                        <img className={classes.avatar} src={props.user.avatar_url} alt={`${props.user.login}'s avatar`} />
+                    </a>
                 </CardContent>
                 <div>
-                    <CardActions disableSpacing>
-                        <Typography variant='subtitle2'>
-                            More info
-                        </Typography>
+                    <CardActions disableSpacing>                    
+                    <Typography className={classes.username} variant='h6' component='h3'>
+                        {props.user.login}
+                    </Typography>
                         <IconButton
                             className={clsx(classes.expand, {
                                 [classes.expandOpen]: expanded,
@@ -68,6 +63,12 @@ function UserCard(props) {
                     </CardActions>
                     <Collapse in={expanded} timeout='auto' unmountOnExit>
                         <CardContent>
+                            <Typography variant='h5' component='h2'>
+                                {props.user.name}
+                            </Typography>
+                            <Typography paragraph>
+                                {props.user.bio}
+                            </Typography>
                             <Typography variant='body2'>
                                 Location: {props.user.location ? props.user.location : 'No location given'}
                             </Typography>

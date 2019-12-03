@@ -22,12 +22,10 @@ class App extends React.Component {
     axios
       .get('https://api.github.com/users/bseverino/followers')
       .then(res => {
-        console.log(res);
         res.data.map(user => {
           axios
             .get(user.url)
             .then(res => {
-              console.log(res);
               this.setState({
                 users: [...this.state.users, res.data]
               });
@@ -39,10 +37,9 @@ class App extends React.Component {
   };
 
   render() {
-    console.log(this.state.users);
-
     return (
       <div className="App">
+        <h1>GitHub User Cards</h1>
         <UserList users={this.state.users} />
       </div>
     );

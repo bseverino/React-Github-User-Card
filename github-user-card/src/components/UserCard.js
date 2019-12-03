@@ -44,7 +44,7 @@ function UserCard(props) {
                         {props.user.name}
                     </Typography>
                     <Typography variant='h6' component='h3'>
-                        {props.user.login}
+                        <a href={props.user.html_url}>{props.user.login}</a>
                     </Typography>
                     <Typography paragraph>
                         {props.user.bio}

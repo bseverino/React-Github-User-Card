@@ -7,7 +7,10 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 const useStyles = makeStyles(theme => ({
     card: {
       maxWidth: 345,
-      height: '100%'
+      minHeight: 600,
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'space-between'
     },
     avatar: {
         width: '100%'
@@ -33,7 +36,7 @@ function UserCard(props) {
     };
 
     return (
-        <Grid item xs={12} sm={6} md={4} lg={3}>
+        <Grid item xs={12} md={6} lg={4} xl={3}>
             <Card className={classes.card}>
                 <CardContent>
                     <img className={classes.avatar} src={props.user.avatar_url} alt={`${props.user.login}'s avatar`} />
@@ -47,37 +50,39 @@ function UserCard(props) {
                         {props.user.bio}
                     </Typography>
                 </CardContent>
-                <CardActions disableSpacing>
-                    <Typography variant='subtitle2'>
-                        More info
-                    </Typography>
-                    <IconButton
-                        className={clsx(classes.expand, {
-                            [classes.expandOpen]: expanded,
-                        })}
-                        onClick={handleExpandClick}
-                        aria-expanded={expanded}
-                        aria-label="show more"
-                    >
-                        <ExpandMoreIcon />
-                    </IconButton>
-                </CardActions>
-                <Collapse in={expanded} timeout='auto' unmountOnExit>
-                    <CardContent>
-                        <Typography variant='body2'>
-                            Location: {props.user.location ? props.user.location : 'No location given'}
+                <div>
+                    <CardActions disableSpacing>
+                        <Typography variant='subtitle2'>
+                            More info
                         </Typography>
-                        <Typography variant='body2'>
-                            Followers: {props.user.followers}
-                        </Typography>
-                        <Typography variant='body2'>
-                            Following: {props.user.following}
-                        </Typography>
-                        <Typography variant='body2'>
-                            Website: {props.user.blog ? <a href={props.user.blog}>{props.user.blog}</a> : 'No website given'}
-                        </Typography>
-                    </CardContent>
-                </Collapse>
+                        <IconButton
+                            className={clsx(classes.expand, {
+                                [classes.expandOpen]: expanded,
+                            })}
+                            onClick={handleExpandClick}
+                            aria-expanded={expanded}
+                            aria-label="show more"
+                        >
+                            <ExpandMoreIcon />
+                        </IconButton>
+                    </CardActions>
+                    <Collapse in={expanded} timeout='auto' unmountOnExit>
+                        <CardContent>
+                            <Typography variant='body2'>
+                                Location: {props.user.location ? props.user.location : 'No location given'}
+                            </Typography>
+                            <Typography variant='body2'>
+                                Followers: {props.user.followers}
+                            </Typography>
+                            <Typography variant='body2'>
+                                Following: {props.user.following}
+                            </Typography>
+                            <Typography variant='body2'>
+                                Website: {props.user.blog ? <a href={props.user.blog}>{props.user.blog}</a> : 'No website given'}
+                            </Typography>
+                        </CardContent>
+                    </Collapse>
+                </div>
             </Card>
         </Grid>
     );

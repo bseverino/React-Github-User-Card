@@ -7,7 +7,9 @@ import UserCard from './UserCard';
 const useStyles = makeStyles({
     userList: {
         display: 'flex',
-        alignItems: 'stretch'
+        alignItems: 'stretch',
+        width: '80%',
+        margin: '0 auto'
     }
 });
 
